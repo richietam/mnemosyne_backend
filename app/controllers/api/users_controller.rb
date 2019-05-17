@@ -10,7 +10,6 @@ class Api::UsersController < ApplicationController
   end
 
   def create
-    byebug
     user = User.find_or_create_by(
       username: params[:username],
       first_name: params[:first_name],

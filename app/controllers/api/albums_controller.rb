@@ -4,12 +4,12 @@ class Api::AlbumsController < ApplicationController
     @albums = Album.all.with_attached_images
 
     render json: @albums.map { |album|
-      array = []
+      arrayOfImageLinks = []
       if album.images.attached?
         album.images.map { |img|
-          array.push(url_for(img))
+          arrayOfImageLinks.push(url_for(img))
         }
-        album.as_json.merge({images: array })
+        album.as_json.merge({images: arrayOfImageLinks })
       end
     }
   end
