@@ -16,19 +16,14 @@ class Api::AlbumsController < ApplicationController
 
 
   def create
-    byebug
-    album = Album.create(
-      name: params[:name],
-      date: params[:date],
-      user_id: params[:user_id]
-    )
+    album = Album.create(name: params[:name], date: params[:date], user_id: params[:user_id])
     album.images.attach(params[:images])
   end
 
   private
 
   def album_params
-    params.require(:album).permit(:name, :date, images: [])
+    params.require(:album).permit(:name, :date, :images)
   end
 
 end
