@@ -1,7 +1,7 @@
 class Api::AlbumsController < ApplicationController
 
   def index
-    @albums = Album.all.with_attached_images
+    @albums = Album.all
 
     render json: @albums.map { |album|
       arrayOfImageLinks = []

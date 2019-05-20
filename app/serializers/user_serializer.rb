@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :avatar
+  attributes :id, :first_name, :last_name, :username
 
   has_many :albums
 
