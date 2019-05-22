@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   namespace :api do
-    resources :users
+    resources :users, only: [:index, :show, :update, :create]
     resources :albums
+
+    delete '/users', to: 'users#deleteImage'
+    post '/login', to: 'auth#login'
+    get '/auto_login', to: 'auth#auto_login'
+    get '/current_album', to: 'albums#current_album'
   end
 end

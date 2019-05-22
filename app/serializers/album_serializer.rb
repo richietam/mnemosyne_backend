@@ -18,7 +18,6 @@ class AlbumSerializer < ActiveModel::Serializer
 
   def images
     @album = self.object
-    byebug
     arrayOfImages = []
     @album.images.map { |img|
       hashOfImages = Hash.new
