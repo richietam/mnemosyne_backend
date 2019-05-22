@@ -18,11 +18,14 @@ class AlbumSerializer < ActiveModel::Serializer
 
   def images
     @album = self.object
-    arrayOfImageLinks = []
+    arrayOfImages = []
     @album.images.map { |img|
-      arrayOfImageLinks.push(url_for(img))
-        }
-    arrayOfImageLinks
+      hashOfImages = Hash.new
+      hashOfImages.store("image_url", url_for(img))
+      hashOfImages.store("id",img.id)
+      arrayOfImages.push(hashOfImages)
+    }
+    arrayOfImages
   end
 
   #make an image serializer

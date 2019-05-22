@@ -12,21 +12,37 @@ class Api::UsersController < ApplicationController
     }
   end
 
+  def show
+    @user = User.find_by(id: params[:id])
+    render json: @user
+  end
+
 
   def create
-    user = User.find_or_create_by(
+    user = User.new(
       username: params[:username],
+      password: params[:password],
       first_name: params[:first_name],
       last_name: params[:last_name],
       email: params[:email]
     )
-    user.avatar.attach(params[:avatar])
+    if user.save
+      user.avatar.attach(params[:avatar])
+      render json: user
+    else
+      render json: {errors: user.errors.full_messages}
+    end
+  end
+
+  def deleteImage
+    @image = ActiveStorage::Attachment.find(params[:image_id])
+    @image.purge
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:username, :avatar)
+    params.require(:user).permit(:username, :avatar, :image_id, :password)
   end
 
 end
