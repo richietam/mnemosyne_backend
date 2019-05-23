@@ -34,11 +34,6 @@ class Api::UsersController < ApplicationController
     end
   end
 
-  def deleteImage
-    @image = ActiveStorage::Attachment.find(params[:image_id])
-    @image.purge
-  end
-
   private
 
   def user_params

@@ -31,6 +31,13 @@ class Api::AlbumsController < ApplicationController
     render json: album
   end
 
+  def deleteImage
+    image = ActiveStorage::Attachment.find(params[:image_id])
+    album = Album.find(image.record_id)
+    image.purge
+    render json: album
+  end
+
   private
 
   def album_params
