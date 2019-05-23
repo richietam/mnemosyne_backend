@@ -3,6 +3,9 @@ class UserSerializer < ActiveModel::Serializer
 
   attributes :id, :first_name, :last_name, :username, :avatar
 
+  has_many :followers
+  has_many :followed_users
+
   has_many :albums do
     object.albums.order(:id)
   end
