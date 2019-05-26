@@ -8,6 +8,6 @@ private
 
   def realism
     return unless user_id == followed_user_id
-    errors.add :user, 'No can follow self!!.'
+    errors.add :user, 'No can follow self!!'
   end
 end

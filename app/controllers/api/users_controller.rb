@@ -36,9 +36,19 @@ class Api::UsersController < ApplicationController
 
   def createFollowing
     following = Following.new(user_id: params[:user_id], followed_user_id: params[:followed_user_id])
-
+    user = User.find_by(id: params[:user_id])
     if following.save
-    render json: following
+    render json: user
+    else
+      render json: {errors: user.errors.full_messages}
+    end
+  end
+
+  def deleteFollowing
+    following = Following.find_by(user_id: params[:user_id], followed_user_id: params[:followed_user_id])
+    user = User.find_by(id: params[:user_id])
+    if following.destroy
+    render json: user
     else
       render json: {errors: user.errors.full_messages}
     end
