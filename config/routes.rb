@@ -8,5 +8,8 @@ Rails.application.routes.draw do
     post '/login', to: 'auth#login'
     get '/auto_login', to: 'auth#auto_login'
     get '/current_album', to: 'albums#current_album'
+    post '/follow', to: 'users#createFollowing'
+    delete '/follow', to: 'users#deleteFollowing'
+
   end
 end

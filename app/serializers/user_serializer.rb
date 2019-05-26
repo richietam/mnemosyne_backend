@@ -3,9 +3,22 @@ class UserSerializer < ActiveModel::Serializer
 
   attributes :id, :first_name, :last_name, :username, :avatar
 
+  has_many :followers
+  has_many :followed_users
+  has_many :followings
   has_many :albums do
     object.albums.order(:id)
   end
+
+  # def followed_user_ids
+  #   followedUserIds = []
+  #   if self.object.followed_users
+  #       self.object.followed_users.map { |user|
+  #         followedUserIds.push(user.id)
+  #       }
+  #   end
+  #   followedUserIds
+  # end
 
   def avatar
     if !self.object.avatar.attachment.nil?
