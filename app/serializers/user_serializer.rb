@@ -4,6 +4,7 @@ class UserSerializer < ActiveModel::Serializer
   attributes :id, :first_name, :last_name, :username, :avatar, :photosUploaded, :newsFeed
 
   has_many :followers
+  has_many :activities
   has_many :followed_users
   has_many :followings
   has_many :albums do
@@ -21,8 +22,7 @@ class UserSerializer < ActiveModel::Serializer
   def newsFeed
     activitiesArr = []
     self.object.followed_users.each do |user|
-      # if !user.activities.nil?
-        activitiesArr.concat(user.activities)
+      activitiesArr.concat(user.activities)
     end
     activitiesArr.reverse
   end

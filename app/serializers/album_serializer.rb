@@ -28,12 +28,4 @@ class AlbumSerializer < ActiveModel::Serializer
     arrayOfImages
   end
 
-  #make an image serializer
-  #include attributes id or blob id
-  #method on image model for image url
-
-
-
-
-
 end
