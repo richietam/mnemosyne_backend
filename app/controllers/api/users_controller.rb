@@ -35,7 +35,10 @@ class Api::UsersController < ApplicationController
   end
 
   def createFollowing
-    following = Following.new(user_id: params[:user_id], followed_user_id: params[:followed_user_id])
+    following = Following.new(
+      user_id: params[:user_id],
+      followed_user_id: params[:followed_user_id]
+    )
     user = User.find_by(id: params[:user_id])
     if following.save
     render json: user

@@ -1,13 +1,25 @@
 class UserSerializer < ActiveModel::Serializer
   include Rails.application.routes.url_helpers
 
-  attributes :id, :first_name, :last_name, :username, :avatar
+  attributes :id, :first_name, :last_name, :username, :avatar, :photosUploaded, :newsFeed
 
   has_many :followers
   has_many :followed_users
   has_many :followings
   has_many :albums do
     object.albums.order(:id)
+  end
+
+  def photosUploaded
+    numPhotos = 0
+    self.object.albums.each do |album|
+      numPhotos += album.images.count
+    end
+    numPhotos
+  end
+
+  def newsFeed
+    activityArray = self.object.followings
   end
 
   # def followed_user_ids
