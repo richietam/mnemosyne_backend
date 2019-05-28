@@ -23,9 +23,8 @@ class UserSerializer < ActiveModel::Serializer
     self.object.followed_users.each do |user|
       # if !user.activities.nil?
         activitiesArr.concat(user.activities)
-
     end
-    activitiesArr
+    activitiesArr.reverse
   end
 
   def followed_user_ids
