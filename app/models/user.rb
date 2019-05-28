@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_one_attached :avatar
   has_many :albums
 
+  has_many :activities
   has_many :followings
   has_many :followed_users, through: :followings
 
