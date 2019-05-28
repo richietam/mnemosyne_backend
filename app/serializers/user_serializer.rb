@@ -19,18 +19,24 @@ class UserSerializer < ActiveModel::Serializer
   end
 
   def newsFeed
-    activityArray = self.object.followings
+    activitiesArr = []
+    self.object.followed_users.each do |user|
+      # if !user.activities.nil?
+        activitiesArr.concat(user.activities)
+
+    end
+    activitiesArr
   end
 
-  # def followed_user_ids
-  #   followedUserIds = []
-  #   if self.object.followed_users
-  #       self.object.followed_users.map { |user|
-  #         followedUserIds.push(user.id)
-  #       }
-  #   end
-  #   followedUserIds
-  # end
+  def followed_user_ids
+    followedUserIds = []
+    if self.object.followed_users
+        self.object.followed_users.map { |user|
+          followedUserIds.push(user.id)
+        }
+    end
+    followedUserIds
+  end
 
   def avatar
     if !self.object.avatar.attachment.nil?

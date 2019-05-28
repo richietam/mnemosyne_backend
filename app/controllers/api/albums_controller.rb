@@ -20,8 +20,19 @@ class Api::AlbumsController < ApplicationController
   end
 
   def create
-    album = Album.create(name: params[:name], date: params[:date], user_id: params[:user_id])
+    album = Album.create(
+      name: params[:name],
+      date: params[:date],
+      user_id: params[:user_id]
+    )
     album.images.attach(params[:images])
+    user = User.find_by(id: params[:user_id])
+    newActivity = Activity.create(
+      user_id: params[:user_id],
+      activity_owner_username: user.username,
+      activity_type: "newAlbum",
+      album_created_id: album.id
+    )
     render json: album
   end
 

@@ -40,8 +40,16 @@ class Api::UsersController < ApplicationController
       followed_user_id: params[:followed_user_id]
     )
     user = User.find_by(id: params[:user_id])
+    followedUser = User.find_by(id: params[:followed_user_id])
     if following.save
-    render json: user
+      Activity.create(
+        user_id: params[:user_id],
+        activity_owner_username: user.username,
+        activity_type: "follow",
+        followed_user_id: params[:followed_user_id],
+        followed_user_username: followedUser.username 
+      )
+      render json: user
     else
       render json: {errors: user.errors.full_messages}
     end
