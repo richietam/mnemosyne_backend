@@ -19,8 +19,9 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'public_activity'
 
 # Use ActiveStorage variant
-gem 'mini_magick', '~> 4.8'
+gem 'mini_magick', '~> 4.9.3'
 
+gem 'image_processing', '~> 1.2'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
