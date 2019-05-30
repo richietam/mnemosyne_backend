@@ -2,7 +2,6 @@ class Api::AlbumsController < ApplicationController
 
   def index
     @albums = Album.all
-
     render json: @albums.map { |album|
       arrayOfImageLinks = []
       if album.images.attached?
@@ -46,6 +45,12 @@ class Api::AlbumsController < ApplicationController
     image = ActiveStorage::Attachment.find(params[:image_id])
     album = Album.find(image.record_id)
     image.purge
+    render json: album
+  end
+
+  def deleteAlbum
+    album = Album.find_by(id: params[:album_id])
+    album.destroy
     render json: album
   end
 
