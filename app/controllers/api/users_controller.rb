@@ -47,7 +47,7 @@ class Api::UsersController < ApplicationController
         activity_owner_username: user.username,
         activity_type: "follow",
         followed_user_id: params[:followed_user_id],
-        followed_user_username: followedUser.username 
+        followed_user_username: followedUser.username
       )
       render json: user
     else
