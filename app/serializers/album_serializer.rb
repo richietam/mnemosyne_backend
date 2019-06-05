@@ -16,17 +16,17 @@ class AlbumSerializer < ActiveModel::Serializer
   #       album.as_json.merge({images: arrayOfImageLinks })
   # end
 
-  def images
-    @album = self.object
-    arrayOfImages = []
-    @album.images.map { |img|
-      hashOfImages = Hash.new
-      hashOfImages.store("image_url", url_for(img))
-      hashOfImages.store("id",img.id)
-      arrayOfImages.push(hashOfImages)
-    }
-    arrayOfImages
-  end
+  # def images
+  #   @album = self.object
+  #   arrayOfImages = []
+  #   @album.images.map { |img|
+  #     hashOfImages = Hash.new
+  #     hashOfImages.store("image_url", url_for(img))
+  #     hashOfImages.store("id",img.id)
+  #     arrayOfImages.push(hashOfImages)
+  #   }
+  #   arrayOfImages
+  # end
 
   # def images
   #   self.object.images
