@@ -33,10 +33,9 @@ class AlbumSerializer < ActiveModel::Serializer
   # end
 
   def images
-    self.object.map { |img|
-    arrayOfImageLinks = []
-    arrayOfImageLinks.push(url_for(img))
+    self.object.images.map { |img|
+      img.service_url
     }
-    arrayOfImageLinks
   end
+
 end
