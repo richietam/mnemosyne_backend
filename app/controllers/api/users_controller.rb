@@ -33,7 +33,7 @@ class Api::UsersController < ApplicationController
       render json: {errors: user.errors.full_messages}
     end
   end
-
+  
   def createFollowing
     following = Following.new(
       user_id: params[:user_id],
