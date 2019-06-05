@@ -33,9 +33,15 @@ class AlbumSerializer < ActiveModel::Serializer
   # end
 
   def images
+    arrayOfImages = []
     self.object.images.map { |img|
+      hashOfImages = Hash.new
+      hashOfImages.store("id", img.id)
+      hashOfImages.store("image_url", img.service_url)
       img.service_url
+      arrayOfImages.push(hashOfImages)
     }
+    arrayOfImages
   end
 
 end
