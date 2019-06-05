@@ -38,11 +38,7 @@ class UserSerializer < ActiveModel::Serializer
   end
 
   def avatar
-    if !self.object.avatar.attachment.nil?
-      self.object.avatar.service_url
-    else
-      "https://react.semantic-ui.com/images/avatar/large/matthew.png"
-    end
+    self.object.avatar.service_url
   end
 
 end
