@@ -33,12 +33,10 @@ class AlbumSerializer < ActiveModel::Serializer
   # end
 
   def images
-  render json: self.object.map { |img|
+    self.object.map { |img|
     arrayOfImageLinks = []
     arrayOfImageLinks.push(url_for(img))
     }
-    album.as_json.merge({images: arrayOfImageLinks })  
-end
-
-
+    arrayOfImageLinks
+  end
 end
