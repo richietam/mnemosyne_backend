@@ -28,5 +28,9 @@ class AlbumSerializer < ActiveModel::Serializer
   #   arrayOfImages
   # end
 
+  def images
+    self.object.images
+  end
+
 
 end
